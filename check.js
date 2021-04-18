@@ -8,21 +8,21 @@ const JESSICA = 'user73379190824'
 const USERS = [ME, JESSICA]
 
 const URLS = [
-    ["BrightSite","https://185.webclimber.de/de/booking/offer/bouldern-im-aussenbereich"],
-    ["Suedbloc","https://141.webclimber.de/de/booking/offer/aussenbereich-boulderzeit"]
+    ["BrightSite", "https://185.webclimber.de/de/booking/offer/bouldern-im-aussenbereich"],
+    ["Suedbloc", "https://141.webclimber.de/de/booking/offer/aussenbereich-boulderzeit"]
 ]
 
 async function checkSite(page, url) {
     await page.goto(url);
-    await page.waitForSelector ('#bookingCalendar');
+    await page.waitForSelector('#bookingCalendar');
     const { length } = await page.$$("#bookingCalendar .day:not(.disabled)")
     return length
 }
 
-async function sendRequest (body) {
+async function sendRequest(body) {
 
     const data = JSON.stringify(body)
-    console.log(JSON.stringify(body,null,2))
+    console.log(JSON.stringify(body, null, 2))
 
     const options = {
         hostname: 'api.spontit.com',
@@ -76,7 +76,7 @@ async function notify(results, previousResults) {
 
 async function saveResults(results) {
     return new Promise((res, rej) => {
-        fs.writeFile('./results.json', JSON.stringify(results, null, 2),(err) => {
+        fs.writeFile('./results.json', JSON.stringify(results, null, 2), (err) => {
             if (err) rej(err)
             else res()
         });
@@ -92,7 +92,7 @@ async function getPreviousResults() {
     })
 }
 
-async function main(force){
+async function main(force) {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
@@ -116,9 +116,10 @@ async function main(force){
     await saveResults(results)
 }
 
-try{
-    main(true)
-} catch(e) {
+try {
+    // force notifications
+    main(false)
+} catch (e) {
     console.warn(e)
 }
 

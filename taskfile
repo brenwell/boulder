@@ -2,7 +2,7 @@
 PATH=./node_modules/.bin:$PATH
 
 function public:deploy {
-  rsync -arv -e 'ssh -p 2233' ./check.js ./package.json ./results.json stringy@stringy.io:www/boulder/public/ --progress --delete --chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r
+  rsync -arv -e 'ssh -p 2233' ./check.js ./package.json ./results.json stringy@brenwell.com:www/boulder/public/ --progress --delete --chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r
 }
 
 function public:help {
