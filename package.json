@@ -1,0 +1,9 @@
+{
+  "name": "boulder",
+  "version": "1.0.0",
+  "main": "check.js",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^8.0.0"
+  }
+}
